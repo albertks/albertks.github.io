@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPRNT</title>
+    <script src="passprint.js"></script>
+</head>
+<body bgcolor="aliceblue" onLoad="response()">
+
+    <form name="myForm">
+        <table  bgcolor="white" cellspacing="0"><tr><td>
+            <table cellpadding="5" cellspacing="2">
+                <tr>
+                    <td bgcolor="lightskyblue">url</td>
+                    <td bgcolor="cornflowerblue">
+                        <select id="url" size="1" onChange="setUrl()">
+                            <option value="none" selected>----</option>
+                            <option value="html_receipt_sample" >HTML Receipt Sample</option>
+                            <option value="pdf_receipt_sample"  >PDF Receipt Sample</option>
+                            <option value="free">USE RIGHT VALUE</option>
+                        </select>
+                    </td>
+                    <td bgcolor="cornflowerblue">
+                        <input type="text" id="url_free" size="60" onChange="createURL()">
+                    </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </table>
+    </form>
+
+<br>
+        <br>
+        <form><input type="button" onclick="location.href=changeHref" value="PRINT" style="font-size:16px; WIDTH: 120px; HEIGHT: 40px; background-color:midnightblue; color:white;"></form>
+        <br>
+        <br>
+        Sending URL to Star PassPRNT<br>
+        <textarea id="send_data" cols="80" rows="30" wrap="soft"></textarea><br>
+    </form>
+</body>
+</html>
