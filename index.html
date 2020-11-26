@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassPRNT</title>
+    <script type="text/javascript">
+
+    var changeHref;
+
+    function response() {
+        createURL();
+        getParameter();
+    }
+
+    function getParameter() {
+        document.getElementById("res").value = location.search.substring(1);
+    }
+
+    function createURL() {
+        changeHref = 'starpassprnt://v1/print/nopreview?&back=http%3A%2F%2F192.168.43.156%2Fprint%2Findex.html&size=2';
+        
+        // url
+        switch (document.getElementById("url").value) {
+				case "none":
+					break;
+				case "html_receipt_sample":
+				case "pdf_receipt_sample":
+				case "free":
+					changeHref = changeHref + "&url=" + encodeURIComponent(document.getElementById("url_free").value);
+					break;
+				default:
+					break;
+			}
+        document.getElementById("send_data").value = changeHref;
+    }
+
+    function setUrl() {
+			switch (document.getElementById("url").value) {
+				case "none":
+					document.getElementById("url_free").value = "";
+					break;
+				case "html_receipt_sample":
+					document.getElementById("url_free").value = "https://www.star-m.jp/products/s_print/sdk/passprnt/sample/resource/receipt_sample.html";
+					break;
+				case "pdf_receipt_sample":
+					document.getElementById("url_free").value = "https://www.star-m.jp/products/s_print/sdk/passprnt/sample/resource/receipt_sample.pdf";
+					break;
+				case "free":
+				default:
+					break;
+			}
+            createURL();
+		}
+
+</script>
+</head>
+<body bgcolor="aliceblue" onLoad="response()">
+
+    <form name="myForm">
+        <table  bgcolor="white" cellspacing="0"><tr><td>
+            <table cellpadding="5" cellspacing="2">
+                <tr>
+                    <td bgcolor="lightskyblue">url</td>
+                    <td bgcolor="cornflowerblue">
+                        <select id="url" size="1" onChange="setUrl()">
+                            <option value="none" selected>----</option>
+                            <option value="html_receipt_sample" >HTML Receipt Sample</option>
+                            <option value="pdf_receipt_sample"  >PDF Receipt Sample</option>
+                            <option value="free">USE RIGHT VALUE</option>
+                        </select>
+                    </td>
+                    <td bgcolor="cornflowerblue">
+                        <input type="text" id="url_free" size="60" onChange="createURL()">
+                    </td>
+                </tr>
+                </table>
+                </td>
+                </tr>
+                </table>
+    </form>
+
+<br>
+        <br>
+        <form><input type="button" onclick="location.href=changeHref" value="PRINT" style="font-size:16px; WIDTH: 120px; HEIGHT: 40px; background-color:midnightblue; color:white;"></form>
+        <br>
+        <br>
+        Sending URL to Star PassPRNT<br>
+        <textarea id="send_data" cols="80" rows="30" wrap="soft"></textarea><br>
+    </form>
+</body>
+</html>
